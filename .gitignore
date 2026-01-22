@@ -1,0 +1,11 @@
+*.DS_Store
+.idea
+# cache files
+**/__pycache__/
+.ipynb_checkpoints/
+datasets
+data
+debugger.py
+apendix_funcs.py
+analytics/plotting_utils.py
+preprocessing/inventory/percentage_aggregations.py
