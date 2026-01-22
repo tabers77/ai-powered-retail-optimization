@@ -6,7 +6,7 @@
 
 > **Portfolio Project**: Advanced machine learning solutions for retail inventory optimization, featuring time series forecasting and personalized product recommendations.
 
-## 🎯 TL;DR (For Recruiters)
+## 🎯 TL;DR 
 
 - **Built ML systems** to optimize retail inventory and product assortment
 - **Forecasted cabinet-level demand** using LSTM + attention (RMSE ↓ to 10.9)
@@ -29,6 +29,9 @@
 - [My Role](#-my-role)
 - [Overview](#-overview)
 - [Project Components](#-project-components)
+  - [Time Series Forecasting System](#1️⃣-time-series-forecasting-system)
+  - [Recommender System](#2️⃣-recommender-system)
+  - [Dynamic Pricing Optimization (Experimental)](#3️⃣-dynamic-pricing-optimization-experimental---in-development)
 - [Final Model Selection](#-final-model-selection)
 - [Results Snapshot](#-results-snapshot)
 - [Technical Stack](#-technical-stack)
@@ -47,6 +50,7 @@ This repository showcases two interconnected machine learning systems designed t
 
 1. **Time Series Forecasting Model**: Predicts weekly sales at the individual cabinet level to optimize inventory management
 2. **Recommender System**: Provides personalized product recommendations using hybrid collaborative and content-based filtering
+3. **Dynamic Pricing Optimization** *(Experimental)*: Thompson Sampling-based approach for optimal price discovery (in development)
 
 ### Business Problem
 
@@ -94,6 +98,56 @@ Retail smart cabinets face two critical challenges:
 - Cabinet clustering based on location, product mix, and performance metrics
 - Weighted hybrid approach (60% collaborative, 40% content-based)
 - Matrix factorization with SVD for sparsity handling
+
+### 3️⃣ Dynamic Pricing Optimization (Experimental - In Development)
+
+> **⚠️ Note**: This component is experimental and was not fully completed. It represents an exploratory phase of the project focused on dynamic pricing strategies.
+
+**Objective**: Optimize product pricing dynamically using Thompson Sampling to maximize revenue while balancing exploration and exploitation of different price points.
+
+**Approach**:
+- **Thompson Sampling Algorithm**: Bayesian approach for the multi-armed bandit problem
+- **Beta and Gamma Distributions**: Model demand uncertainty at different price points
+- **Prior Selection Methods**: Uniform, mean-based, informative, and exponential priors
+- **Revenue Optimization**: Maximize expected revenue through iterative price testing
+
+**Implementation Status**:
+- ✅ Thompson Sampling core algorithm implemented with two baseline variations
+- ✅ Prior initialization strategies (uniform, mean-based, informative, exponential)
+- ✅ Pipeline compiler for cabinet-level price optimization
+- ✅ Multi-price product filtering and demand aggregation
+- ⚠️ **Incomplete**: Full integration with forecasting pipeline
+- ⚠️ **Incomplete**: Real-world validation and A/B testing framework
+- ⚠️ **Incomplete**: Revenue impact evaluation metrics
+
+**Key Features**:
+- **Baseline 1**: Beta distribution with flat or informative priors for demand probability estimation
+- **Baseline 2**: Gamma distribution with mean-based priors for revenue probability calculation
+- **Cabinet-level Analysis**: Processes top-performing cabinets with multi-price products
+- **Demand Filtering**: Focuses on products with above-average demand
+- **Visualization**: Optional PDF plotting for distribution evolution over iterations
+
+**Technical Challenges**:
+- Sparse data for multi-price products (many products sold at single price points)
+- Balancing exploration vs. exploitation in real-time pricing scenarios
+- Integration complexity with existing forecasting and recommendation systems
+- Limited historical data for validating price elasticity assumptions
+
+**Why Incomplete?**:
+This module was developed as an experimental feature to explore dynamic pricing capabilities. However, due to:
+- Data limitations (insufficient multi-price product observations)
+- Business constraint considerations (pricing flexibility in real scenarios)
+- Focus prioritization on forecasting and recommendation systems
+- Time constraints for complete validation and testing
+
+The pricing optimization component was deprioritized in favor of completing and optimizing the forecasting and recommender systems, which provided more immediate and measurable business value.
+
+**Future Development Path** (if pursued):
+- Integrate with demand forecasting for price-demand elasticity modeling
+- Implement contextual bandits for multi-feature price optimization
+- Add real-time feedback loop for continuous price adjustment
+- Develop A/B testing framework for controlled price experiments
+- Create revenue simulation and impact analysis tools
 
 ---
 
@@ -423,7 +477,8 @@ The hybrid recommender combines two approaches:
 ### Long-term Vision
 - [ ] **Reinforcement Learning**: Dynamic inventory optimization
 - [ ] **Multi-location Forecasting**: Cross-cabinet learning
-- [ ] **Pricing Optimization**: Dynamic pricing based on demand
+- [ ] **Pricing Optimization**: Complete the experimental Thompson Sampling module for dynamic pricing
+- [ ] **Price Elasticity Modeling**: Integrate pricing with demand forecasting
 - [ ] **Customer Segmentation**: Personalized recommendations per user profile
 - [ ] **Supply Chain Integration**: End-to-end optimization
 
